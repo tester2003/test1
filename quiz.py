@@ -1,129 +1,60 @@
-from random import shuffle
+def give_options(x,y,z):
+    print("a):", x)
+    print("b):", y)
+    print("c):", z)
+    
+print("Hello! Welcome to my Quiz" "\n" "All Questions carries 10 marks each")
+ans = input("Are you ready to play (yes/no): ")
+a ="Note: wrtie answers! do not write option."
+score = 0
+total_questions = 4
 
+correct_ans =["python", "steve jobs", "artificial intelligence", "bitcoin"]
 
-class Card:
-    suits = ["spades",
-             "hearts",
-             "diamonds",
-             "clubs"]
+if ans.lower() == "yes":
+    print(a)
+    print("Question- What is the best Programming Language? ")
+    give_options("Python", "C", "Java" )
+    ans=input("&gt;&gt;&gt;")
+    if ans.lower() == correct_ans[0]:
+        score=score+1
+        print("Correct")
+    else:
+        print("Incorrect")
+    print(a)
+    print("Question- Who is the Founder of Apple Inc? ")
+    give_options("Mark Zuckerberg", "Warren Buffet", "Steve jobs")
+    ans = input("&gt;&gt;&gt;")
+    if ans.lower() == correct_ans[1]:
+        score=score+1
+        print("Correct")
+    else:
+        print("Incorrect")
+    print(a)
+    print("Question- What is more better among these? ")
+    give_options("Data Science", "Artificial Intelligence", "Digital Marketing")
+    ans = input("&gt;&gt;&gt;")
+    if ans.lower() == correct_ans[2]:
+        score=score+1
+        print("Correct")
+    else:
+        print("Incorrect")
+    print(a)
+    print("Question- What is the best Investment? ")
+    give_options("Share Capital", "Mutual Funds", "Bitcoin")
+    ans = input("&gt;&gt;&gt;")
+    if ans.lower() == correct_ans[3]:
+        score=score+1
+        print("Correct")
+    else:
+        print("Incorrect")
+Code language: PHP (php)
+Now as we are done with the questions it’s time to show the scores to the user. I will multiply the score with 10 and then I will pass the if-else conditionals to print the status of the result of this Quiz game:
 
-    values = [None, None,"2", "3",
-              "4", "5", "6", "7",
-              "8", "9", "10",
-              "Jack", "Queen",
-              "King", "Ace"]
-
-    def __init__(self, v, s):
-        """suit + value are ints"""
-        self.value = v
-        self.suit = s
-
-    def __lt__(self, c2):
-        if self.value < c2.value:
-            return True
-        if self.value == c2.value:
-            if self.suit < c2.suit:
-                return True
-            else:
-                return False
-        return False
-
-    def __gt__(self, c2):
-        if self.value > c2.value:
-            return True
-        if self.value == c2.value:
-            if self.suit > c2.suit:
-                return True
-            else:
-                return False
-        return False
-
-    def __repr__(self):
-        v = self.values[self.value] +\
-            " of " + \
-            self.suits[self.suit]
-        return v
-
-
-class Deck:
-    def __init__(self):
-        self.cards = []
-        for i in range(2, 15):
-            for j in range(4):
-                self.cards\
-                    .append(Card(i,
-                                 j))
-        shuffle(self.cards)
-
-    def rm_card(self):
-        if len(self.cards) == 0:
-            return
-        return self.cards.pop()
-
-
-class Player:
-    def __init__(self, name):
-        self.wins = 0
-        self.card = None
-        self.name = name
-
-
-class Game:
-    def __init__(self):
-        name1 = input("p1 name ")
-        name2 = input("p2 name ")
-        self.deck = Deck()
-        self.p1 = Player(name1)
-        self.p2 = Player(name2)
-
-    def wins(self, winner):
-        w = "{} wins this round"
-        w = w.format(winner)
-        print(w)
-
-    def draw(self, p1n, p1c, p2n, p2c):
-        d = "{} drew {} {} drew {}"
-        d = d.format(p1n,
-                     p1c,
-                     p2n,
-                     p2c)
-        print(d)
-
-    def play_game(self):
-        cards = self.deck.cards
-        print("beginning War!")
-        while len(cards) >= 2:
-            m = "q to quit. Any " + \
-                "key to play:"
-            response = input(m)
-            if response == 'q':
-                break
-            p1c = self.deck.rm_card()
-            p2c = self.deck.rm_card()
-            p1n = self.p1.name
-            p2n = self.p2.name
-            self.draw(p1n,
-                      p1c,
-                      p2n,
-                      p2c)
-            if p1c > p2c:
-                self.p1.wins += 1
-                self.wins(self.p1.name)
-            else:
-                self.p2.wins += 1
-                self.wins(self.p2.name)
-
-        win = self.winner(self.p1,
-                         self.p2)
-        print("War is over.{} wins"
-              .format(win))
-
-    def winner(self, p1, p2):
-        if p1.wins > p2.wins:
-            return p1.name
-        if p1.wins < p2.wins:
-            return p2.name
-        return "It was a tie!"
-
-game = Game()
-game.play_game()
+i = score*10
+if i &lt; 30:
+    print("Ouch, your score is ",i,"/ 40 better luck next time.")
+elif i ==30:
+    print("Nice! you scored ",i,"/ 40 you are quiet smart.")
+else:
+    print("Congratulations! it's a perfect ",i,"/ 40 you are Intelligent.")
